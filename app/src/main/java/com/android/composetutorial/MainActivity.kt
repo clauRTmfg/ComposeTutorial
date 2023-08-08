@@ -17,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android.composetutorial.ui.theme.ComposeTutorialTheme
+import android.content.res.Configuration
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,17 +29,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    UserCard(Perfil("clauRTmfg", "Aprendendo Jetpack Compose"))
+                    MessageCard(Mensagem("clauRTmfg", "Desenvolvendo com Jetpack Compose"))
                 }
             }
         }
     }
 }
 
-data class Perfil(val nome: String, val descricao: String)
+data class Mensagem(val nome: String, val descricao: String)
 
 @Composable
-fun UserCard(msg: Perfil) {
+fun MessageCard(msg: Mensagem) {
 
     Row(modifier = Modifier.padding(all = 8.dp)) {
         Image(
@@ -72,12 +73,17 @@ fun UserCard(msg: Perfil) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(name = "Light Mode")
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    name = "Dark Mode"
+)
 @Composable
 fun DefaultPreview() {
     ComposeTutorialTheme {
         Surface {
-            UserCard(Perfil("ClauRT", "Testando Jetpack Compose !!"))
+            MessageCard(Mensagem("ClauRT", "Testando Jetpack Compose !!"))
         }
     }
 }
